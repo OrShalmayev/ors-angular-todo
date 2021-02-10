@@ -1,0 +1,11 @@
+<div class="nav-bar">
+  <h1><i data-feather="check-square"></i> Or's Todos</h1>
+  <div class="logout-container" *ngIf="isLoggedIn">
+    <button
+      (click)="logOut()"
+      class="logout-btn"
+    >
+      logout
+    </button>
+  </div>
+</div>

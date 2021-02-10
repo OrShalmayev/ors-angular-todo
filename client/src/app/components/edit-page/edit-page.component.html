@@ -1,0 +1,40 @@
+<form class="form-container" autocomplete="off">
+  <label for="content"
+    ><h1><i data-feather="edit"></i> Edit Todo</h1></label
+  >
+  <div *ngIf="todo | async">
+    <input
+      type="text"
+      name="content"
+      [formControl]="content"
+      required
+      autofocus
+      (keydown.enter)="$event.preventDefault()"
+    />
+    <div
+      [ngClass]="{
+        visible: content.invalid && (content.touched || content.dirty)
+      }"
+      class="error"
+    >
+      Enter a todo
+    </div>
+  </div>
+  <div class="success-message" [ngClass]="{ visible: showMessage }">
+    Todo updated!
+  </div>
+  <div class="button-container">
+    <a [routerLink]="['']"
+      ><button class="button">Back<i class="icon" data-feather="arrow-right"></i></button
+    ></a>
+
+    <div
+      tabindex="0"
+      (keydown.enter)="$event.target.click()"
+      class="button"
+      (click)="onSubmit()"
+    >
+      Edit &nbsp;<i class="icon" data-feather="edit"></i>
+    </div>
+  </div>
+</form>

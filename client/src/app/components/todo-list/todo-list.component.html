@@ -1,0 +1,32 @@
+<div class="todo-list">
+  <div class="button-container">
+    <a [routerLink]="['/create']"
+      ><button class="button"><i class="icon" data-feather="plus"></i>Add Todo</button></a
+    >
+  </div>
+
+  <h3
+    class="finished-text"
+    *ngIf="(unfinished | async)?.length < 1 && (finished | async)?.length < 1"
+  >
+    Nice work! You've finished all the todos.
+  </h3>
+  <p
+    class="finished-text"
+    *ngIf="(unfinished | async)?.length < 1 && (finished | async)?.length < 1"
+  >
+    Click on + Add Todo to get started
+  </p>
+
+  <div [@cardAnimations]="(unfinished | async)?.length">
+    <div *ngFor="let todo of unfinished | async">
+      <app-todo-card [todo]="todo"></app-todo-card>
+    </div>
+  </div>
+
+  <div [@cardAnimations]="(finished | async)?.length">
+    <div *ngFor="let todo of finished | async">
+      <app-todo-card [todo]="todo"></app-todo-card>
+    </div>
+  </div>
+</div>

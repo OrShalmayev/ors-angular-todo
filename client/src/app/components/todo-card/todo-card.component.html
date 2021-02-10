@@ -1,0 +1,26 @@
+<div class="todo-card">
+  <h3 [ngClass]="{ 'todo-complete': todo.complete }">{{ todo.content }}</h3>
+
+  <div class="icon-button-container">
+    <div
+      (click)="onToggleComplete()"
+      tabindex="0"
+      (keydown.enter)="$event.target.click()"
+    >
+      <i class="icon" data-feather="check"></i>
+    </div>
+    <a
+      [routerLink]="['/edit', todo._id]"
+      [title]="'Update todo'"
+      (keydown.enter)="$event.target.click()"
+      ><i class="icon" data-feather="edit-3"></i
+    ></a>
+    <div
+      (click)="onDeleteClick()"
+      tabindex="0"
+      (keydown.enter)="$event.target.click()"
+    >
+      <span class="icon" data-feather="trash"></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div>
+  <form class="form-container" autocomplete="off" (ngSubmit)="onSubmit()">
+    <label for="content"
+      ><h1><i data-feather="plus-square"></i> Add Todo</h1></label
+    >
+    <div>
+      <input
+        type="text"
+        name="content"
+        [formControl]="content"
+        placeholder="Add your todo"
+        onfocus="this.placeholder = ''"
+        required
+        (keydown.enter)="$event.preventDefault()"
+      />
+      <div
+        [ngClass]="{
+          visible: content.invalid && (content.touched || content.dirty)
+        }"
+        class="error"
+      >
+        Enter a todo
+      </div>
+    </div>
+
+    <div class="success-message" [ngClass]="{ visible: showMessage }">
+      Todo added!
+    </div>
+
+    <div class="button-container">
+      <a [routerLink]="['']"
+        ><button class="button"><i class="icon" data-feather="arrow-left"></i>Back</button></a
+      >
+      <div
+        tabindex="0"
+        (keydown.enter)="$event.target.click()"
+        [ngClass]="{ disabled: content.invalid }"
+        class="button"
+        (click)="onSubmit()"
+      >
+        <i class="icon" data-feather="plus"></i>Add Todo
+      </div>
+    </div>
+  </form>
+</div>
